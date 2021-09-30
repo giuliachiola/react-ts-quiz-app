@@ -5,7 +5,7 @@ import QuestionCard from './components/QuestionCard';
 import { QuestionState, fetchQuizQuestions } from './API';
 import { Difficulty } from './API';
 
-type AnswerObject = {
+export type AnswerObject = {
   question: string;
   answer: string;
   correct: boolean;
@@ -54,26 +54,34 @@ const App = () => {
   }
 
   const nextQuestion =  () => {
-
+    // move on to the next question if not the last question
+    const nextQuestion = number + 1
+    if (nextQuestion === TOTAL_QUESTIONS) {
+      setGameOver(true)
+    } else {
+      setNumber(nextQuestion)
+    }
   }
 
   return (
     <div className="App">
       <div className="container">
         {/* Intro */}
-        <h1>React TypeScript Quiz</h1>
+        <h1>App Quiz</h1>
+        <h2>built with React/TypeScript</h2>
+        <hr />
         <img className='bg-image' src="https://images.unsplash.com/photo-1539628399213-d6aa89c93074?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="https://unsplash.com/photos/jvBXiynINGE" />
 
         {/* start button */}
         {
           gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-            <button className='start' onClick={startTrivia}>Start</button>
+            <button className='btn btn--start' onClick={startTrivia}>Start</button>
           ): null
         }
 
         {/* score */}
         {!gameOver ?
-          <p className='score'>Score:</p>: null
+          <p className='score'>Score: {score}</p>: null
         }
 
         {/* loading */}
@@ -101,7 +109,7 @@ const App = () => {
           && !loading
           && userAnswers.length === number + 1
           && number !== TOTAL_QUESTIONS - 1 ?
-          <button className='next' onClick={nextQuestion}>Next question</button> : null
+          <button className='btn btn--next' onClick={nextQuestion}>Next question</button> : null
         }
 
       </div>

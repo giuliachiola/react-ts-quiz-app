@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { AnswerObject } from '../App'
+
 type Props = {
   question: string;
   answers: string[];
-  callback: any;
-  userAnswers: any; // boolean or answer array type
+  callback: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  userAnswers: AnswerObject | undefined;
   questionNr: number;
   totalQuestions: number;
 }
@@ -23,8 +25,15 @@ const QuestionCard: React.FC<Props> = ({
     <p dangerouslySetInnerHTML={{ __html: question }} />
     <div>
       {answers.map(answer => (
-        <div key={answer}>
-          <button disabled={userAnswers} value={answer} onClick={callback}>
+        // convert `userAnswers` to Boolean value
+        <div className='question' key={answer}>
+          {userAnswers && <span>{userAnswers?.correctAnswer === answer ? '✅' : '❌'}</span> }
+          <button
+            className={`btn ${userAnswers?.answer === answer ? 'btn--clicked': ''} ${userAnswers?.correctAnswer === answer ? 'btn--correct' : 'btn--wrong'}`}
+            disabled={!!userAnswers}
+            value={answer}
+            onClick={callback}
+          >
             <span dangerouslySetInnerHTML={{ __html: answer }}></span>
           </button>
         </div>

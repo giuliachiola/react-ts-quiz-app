@@ -6,6 +6,10 @@ body {
   padding: 0;
 }
 
+button {
+  font-family: 'Source Code Pro', monospace;
+}
+
 .App {
   position: relative;
   display: flex;
@@ -28,4 +32,44 @@ body {
   background-color: rgba(245, 245, 245, 0.9);
   padding: 20px;
   border-radius: 6px;
+}
+
+span ~ .btn {
+  margin-left: 6px;
+}
+
+.btn {
+  appearance: none;
+  background: #FF5900;
+  border-radius: 6px;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+.btn--disabled {
+  background-color: gray;
+}
+
+.question ~ .question .btn {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.btn--next {
+  background: #0045AD;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.btn--clicked.btn--correct {
+  background: #009B48;
+}
+
+.btn--clicked.btn--wrong {
+  background: #B90000;
 }
