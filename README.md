@@ -14,6 +14,7 @@ TypeScript basic tutorial
 
 | Purpose    | Technology |
 | :--------- | :--------- |
+| Framework  | React      |
 | Templating | TS         |
 
 ## 🌊 Run development mode
